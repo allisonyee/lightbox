@@ -12,6 +12,7 @@ domReady(function() {
   photos = get_photos("san+francisco");
   update_gallery(photos);
 
+  // live search call Flickr API
   var search = document.getElementById('search');
   var timer;
   search.onkeyup = function() {
@@ -20,7 +21,7 @@ domReady(function() {
       var query = search.value.split(' ').join('+');
       photos = get_photos(query);
       update_gallery(photos);
-    }, 1000)
+    }, 500)
   }
 
   var lightbox = document.getElementById('lightbox');
@@ -31,12 +32,12 @@ domReady(function() {
     if (lightbox.style.display == 'block') {
       // right arrow
       if (e.keyCode == 39) {
-        if (curr_photo == 7) update_content(photos, 0);
+        if (curr_photo == 5) update_content(photos, 0);
         else update_content(photos, curr_photo+1);
       }
       // left arrow
       else if (e.keyCode == 37) {
-        if (curr_photo == 0) update_content(photos, 7);
+        if (curr_photo == 0) update_content(photos, 5);
         else update_content(photos, curr_photo-1);
       }
       // esc 
@@ -51,19 +52,20 @@ domReady(function() {
     (function(index) {
       triggers[i].onclick = function(e) {
         e.preventDefault();
+        console.log(photos);
         update_content(photos, index);
         update_previews(photos);
         lightbox.style.display = 'block';
 
         document.getElementById('btn_prev').onclick = function(e) {
           e.preventDefault();
-          if (curr_photo == 0) update_content(photos, 7);
+          if (curr_photo == 0) update_content(photos, 5);
           else update_content(photos, curr_photo-1);
           update_previews(photos);
         }
         document.getElementById('btn_next').onclick = function(e) {
           e.preventDefault();
-          if (curr_photo == 7) update_content(photos, 0);
+          if (curr_photo == 5) update_content(photos, 0);
           else update_content(photos, curr_photo+1);
           update_previews(photos);
         }
