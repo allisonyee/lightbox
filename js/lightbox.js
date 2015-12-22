@@ -37,22 +37,20 @@ var update_content = function(photos, index) {
 var update_previews = function(photos) {
   if (curr_photo == 0) {
     // make prev of first photo point to the last photo
-    document.getElementById('prev_preview').style.backgroundImage = 'url(' + url_maker(photos[5]) + ')';
-    document.getElementById('prev_title').innerHTML = photos[5]['title'].substring(0,22);
-    document.getElementById('next_preview').style.backgroundImage = 'url(' + url_maker(photos[1]) + ')';
-    document.getElementById('next_title').innerHTML = photos[1]['title'].substring(0,22);
+    update_previews_helper(photos.length-1, curr_photo+1);
   }
   else if (curr_photo == 5) {
     // make next of last photo point to first photo
-    document.getElementById('prev_preview').style.backgroundImage = 'url(' + url_maker(photos[4]) + ')';
-    document.getElementById('prev_title').innerHTML = photos[4]['title'].substring(0,22);
-    document.getElementById('next_preview').style.backgroundImage = 'url(' + url_maker(photos[0]) + ')';
-    document.getElementById('next_title').innerHTML = photos[0]['title'].substring(0,22);
+    update_previews_helper(curr_photo-1, 0);
   }
   else {
-    document.getElementById('prev_preview').style.backgroundImage = 'url(' + url_maker(photos[curr_photo-1]) + ')';
-    document.getElementById('prev_title').innerHTML = photos[curr_photo-1]['title'].substring(0,22);
-    document.getElementById('next_preview').style.backgroundImage = 'url(' + url_maker(photos[curr_photo+1]) + ')';
-    document.getElementById('next_title').innerHTML = photos[curr_photo+1]['title'].substring(0,22);
+    update_previews_helper(curr_photo-1, curr_photo+1);
   }
+}
+
+var update_previews_helper = function(prev_index, next_index) {
+  document.getElementById('prev_preview').style.backgroundImage = 'url(' + url_maker(photos[prev_index]) + ')';
+  document.getElementById('prev_title').innerHTML = photos[prev_index]['title'].substring(0,22);
+  document.getElementById('next_preview').style.backgroundImage = 'url(' + url_maker(photos[next_index]) + ')';
+  document.getElementById('next_title').innerHTML = photos[next_index]['title'].substring(0,22);
 }
