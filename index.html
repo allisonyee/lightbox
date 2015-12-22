@@ -5,9 +5,22 @@
 
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/lightbox.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="vendor/arrownav.css">
   </head>
 <body>
+  <div class="svg-wrap">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path id="arrow-left-1" d="M46.077 55.738c0.858 0.867 0.858 2.266 0 3.133s-2.243 0.867-3.101 0l-25.056-25.302c-0.858-0.867-0.858-2.269 0-3.133l25.056-25.306c0.858-0.867 2.243-0.867 3.101 0s0.858 2.266 0 3.133l-22.848 23.738 22.848 23.738z" />
+      </svg>
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path id="arrow-right-1" d="M17.919 55.738c-0.858 0.867-0.858 2.266 0 3.133s2.243 0.867 3.101 0l25.056-25.302c0.858-0.867 0.858-2.269 0-3.133l-25.056-25.306c-0.858-0.867-2.243-0.867-3.101 0s-0.858 2.266 0 3.133l22.848 23.738-22.848 23.738z" />
+      </svg>
+    </div>
+
+  <input type="text" id="search">
+
   <div class="gallery">
     <a class="square lightbox_trigger"></a>
     <a class="square lightbox_trigger"></a>
@@ -18,9 +31,23 @@
     <a class="square lightbox_trigger"></a>
     <a class="square lightbox_trigger"></a>
   </div>
+
   <div id="lightbox">
-    <div class="button" id="btn_prev"></div>
-    <div class="button" id="btn_next"></div>
+    <nav class="nav-slit">
+      <a class="prev" id="btn_prev">
+        <span class="icon-wrap"><svg class="icon" width="22" height="22" viewBox="0 0 64 64"><use xlink:href="#arrow-left-1"></svg></span>
+        <div class="preview" id="prev_preview">
+          <h3 id="prev_title"></h3>
+        </div>
+      </a>
+      <a class="next" id="btn_next">
+        <span class="icon-wrap"><svg class="icon" width="22" height="22" viewBox="0 0 64 64"><use xlink:href="#arrow-right-1"></svg></span>
+        <div class="preview" id="next_preview">
+          <h3 id="next_title"></h3>
+        </div>
+      </a>
+    </nav>
+
     <div id="content">
         <img src="">
     </div>

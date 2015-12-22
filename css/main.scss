@@ -8,11 +8,24 @@ html {
 body {
   margin:0; 
   padding:0; 
+  font-family: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.svg-wrap {
+  display: none;
+}
+
+.gallery {
+  overflow: hidden;
 }
 
 #content {
   height: 100%;
-  margin: 20px;
+  margin: 35px;
+
+  .title {
+    margin-top: -40px;
+  }
 }
 
 #lightbox {
@@ -27,11 +40,12 @@ body {
 }
 
 #lightbox img {
+  border: 12px solid #fff;
+  border-bottom: 50px solid #fff;
   box-shadow: 0 0 25px #111;
   -webkit-box-shadow: 0 0 25px #111;
   -moz-box-shadow: 0 0 25px #111;
-  // max-width: 940px;
-  max-height: 90%;
+  max-height: 80%;
 }
 
 .square {
@@ -52,6 +66,9 @@ body {
 }
 
 .button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: 2px solid #fff;
   height: 50px;
