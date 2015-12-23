@@ -52,7 +52,6 @@ domReady(function() {
     (function(index) {
       triggers[i].onclick = function(e) {
         e.preventDefault();
-        console.log(photos);
         update_content(photos, index);
         update_previews(photos);
         lightbox.style.display = 'block';
@@ -69,10 +68,18 @@ domReady(function() {
           else update_content(photos, curr_photo+1);
           update_previews(photos);
         }
+        // prevent lightbox from closing when you click the photo
+        document.getElementById('photo').onclick = function(e) {
+          e.stopPropagation();
+        }
       }
     })(i);
   }
+  // hide lightbox when clicking outside photo or the icon
   document.getElementById('content').onclick = function() {
+    lightbox.style.display = 'none';
+  }
+  document.getElementsByClassName('close_icon')[0].onclick = function() {
     lightbox.style.display = 'none';
   }
 });

@@ -16,16 +16,11 @@ var get_photos = function(q) {
   return photos;
 }
 
-// generate image URL from Flickr data
-var url_maker = function(photo) {
-  return "https://farm" + photo['farm'] + ".staticflickr.com/" + photo['server'] + "/" + photo['id'] + "_" + photo['secret'] + "_b.jpg";
-}
-
 // update gallery with search results
 var update_gallery = function(photos) {
   var squares = document.getElementsByClassName('square');
   for (var i = 0; i < photos.length; i++) {
-    var url = "https://farm" + photos[i]['farm'] + ".staticflickr.com/" + photos[i]['server'] + "/" + photos[i]['id'] + "_" + photos[i]['secret'] + "_b.jpg";
+    var url = photos[i]['url_l'];
     squares[i].href = url;
     squares[i].style.backgroundImage = 'url(' + url + ')';
     squares[i].innerHTML = '<figcaption><h2>' + photos[i]['title'] + '</h2></figcaption>';
@@ -38,7 +33,7 @@ var update_content = function(photos, index) {
   curr_photo = index;
   var squares = document.getElementsByClassName('square');
   var image_href = squares[index].href;
-  document.getElementById('content').innerHTML = '<img src="' + image_href + '" /><div class="title">' + photos[index]['title'] + '</div>';
+  document.getElementById('content').innerHTML = '<img id="photo" src="' + image_href + '" /><div class="title">' + photos[index]['title'] + '</div>';
 };
 
 // update preview image and title in lightbox navigation
@@ -57,8 +52,8 @@ var update_previews = function(photos) {
 }
 
 var update_previews_helper = function(prev_index, next_index) {
-  document.getElementById('prev_preview').style.backgroundImage = 'url(' + url_maker(photos[prev_index]) + ')';
+  document.getElementById('prev_preview').style.backgroundImage = 'url(' + photos[prev_index]['url_l'] + ')';
   document.getElementById('prev_title').innerHTML = photos[prev_index]['title'].substring(0,21);
-  document.getElementById('next_preview').style.backgroundImage = 'url(' + url_maker(photos[next_index]) + ')';
+  document.getElementById('next_preview').style.backgroundImage = 'url(' + photos[next_index]['url_l'] + ')';
   document.getElementById('next_title').innerHTML = photos[next_index]['title'].substring(0,22);
 }

@@ -42,6 +42,18 @@ body {
   overflow: hidden;
 }
 
+.close_icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  opacity: 0.5;
+  transition: opacity 100ms ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 #content {
   height: 100%;
   margin: 35px;
