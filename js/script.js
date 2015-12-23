@@ -9,7 +9,7 @@ var domReady = function(callback) {
 
 domReady(function() {
   // populate gallery initially
-  photos = get_photos("san+francisco");
+  photos = get_photos("boston");
   update_gallery(photos);
 
   // live search call Flickr API

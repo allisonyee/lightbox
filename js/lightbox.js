@@ -1,6 +1,6 @@
 // get photos from Flickr
 var get_photos = function(q) {
-  var q_url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e1da18a4cf739bed92b013de7945c39f&tags=" + q + "&tag_mode=all&text=" + q + "&sort=interestingness-desc&extras=url_l&format=json&nojsoncallback=1";
+  var q_url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e1da18a4cf739bed92b013de7945c39f&text=" + q + "&sort=interestingness-desc&extras=url_l&format=json&nojsoncallback=1";
   var xhr = new XMLHttpRequest();
   xhr.open("GET", q_url, false);
   xhr.send();
@@ -9,9 +9,8 @@ var get_photos = function(q) {
   // grab first 6 photos that have a URL for large-sized image
   var photos = []
   var i = 0;
-  while (photos.length < 6) {
-    if (data[i]['url_l'] === undefined) continue;
-    else photos.push(data[i]);
+  while (i < data.length && photos.length < 6) {
+    if (data[i]['url_l'] != undefined) photos.push(data[i]);
     i++;
   }
   return photos;
