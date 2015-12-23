@@ -1,11 +1,20 @@
 // get photos from Flickr
 var get_photos = function(q) {
-  var q_url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e1da18a4cf739bed92b013de7945c39f&text=" + q + "&sort=interestingness-desc&format=json&nojsoncallback=1";
+  var q_url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e1da18a4cf739bed92b013de7945c39f&tags=" + q + "&tag_mode=all&text=" + q + "&sort=interestingness-desc&extras=url_l&format=json&nojsoncallback=1";
   var xhr = new XMLHttpRequest();
   xhr.open("GET", q_url, false);
   xhr.send();
   var response = JSON.parse(xhr.response);
-  return response["photos"]["photo"].slice(0,6);
+  var data = response["photos"]["photo"]
+  // grab first 6 photos that have a URL for large-sized image
+  var photos = []
+  var i = 0;
+  while (photos.length < 6) {
+    if (data[i]['url_l'] === undefined) continue;
+    else photos.push(data[i]);
+    i++;
+  }
+  return photos;
 }
 
 // generate image URL from Flickr data
@@ -50,7 +59,7 @@ var update_previews = function(photos) {
 
 var update_previews_helper = function(prev_index, next_index) {
   document.getElementById('prev_preview').style.backgroundImage = 'url(' + url_maker(photos[prev_index]) + ')';
-  document.getElementById('prev_title').innerHTML = photos[prev_index]['title'].substring(0,22);
+  document.getElementById('prev_title').innerHTML = photos[prev_index]['title'].substring(0,21);
   document.getElementById('next_preview').style.backgroundImage = 'url(' + url_maker(photos[next_index]) + ')';
   document.getElementById('next_title').innerHTML = photos[next_index]['title'].substring(0,22);
 }

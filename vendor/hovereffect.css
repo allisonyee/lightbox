@@ -30,9 +30,15 @@
 	padding: 2em;
 	color: #fff;
 	text-transform: uppercase;
-	font-size: 1.25em;
+	font-size: 1em;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
+}
+
+@media (min-width: 900px) {
+	.gallery figure figcaption {
+		font-size: 1.25em;
+	}
 }
 
 .gallery figure figcaption::before,
